@@ -28,7 +28,7 @@
 .*/__mocks__/.*
 .*/__tests__/.*
 
-.*/commoner/test/source/widget/share.js
+.*/commoner/test/source/widget/index.js
 
 # Ignore commoner tests
 .*/node_modules/commoner/test/.*
