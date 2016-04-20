@@ -34,6 +34,7 @@ module.exports = {
                     }
                     this.setState({text});
                 }
+            );
         }
         else
         {
