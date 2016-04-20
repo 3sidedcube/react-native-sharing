@@ -1,10 +1,8 @@
 {
-  "name": "reactnativesharing",
+  "name": "react-native-sharing",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
-  },
+  "description": "Cross platform sharing for React Native",
+  "main": "index.js",
   "dependencies": {
     "react": "^0.14.8",
     "react-native": "^0.24.1"
