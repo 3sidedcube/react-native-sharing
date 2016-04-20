@@ -26,13 +26,7 @@ module.exports = {
                 (error) => console.log(error),
                 (success, method) =>
                 {
-                    var text;
-                    if (success) {
-                        text = `Shared via ${method}`;
-                    } else {
-                        text = 'You didn\'t share';
-                    }
-                    this.setState({text});
+                    console.log("Success!");
                 }
             );
         }
