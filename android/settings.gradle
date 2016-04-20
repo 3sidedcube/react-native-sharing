@@ -1,0 +1,3 @@
+rootProject.name = 'reactnativesharing'
+
+include ':app'
