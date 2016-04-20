@@ -45,7 +45,7 @@ public class Sharer extends ReactContextBaseJavaModule
         String text = options.getString(KEY_TEXT);
         String title = options.getString(KEY_TITLE);
 
-        Intent shareIntent = new ShareIntent(subject, text, "text/plain");
+        Intent shareIntent = getShareIntent(subject, text, "text/plain");
 
         Intent chooserIntent = Intent.createChooser(shareIntent, title);
         chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -58,6 +58,16 @@ public class Sharer extends ReactContextBaseJavaModule
         {
             promise.reject(exception);
         }
+    }
+
+    private Intent getShareIntent(String subject, String text, String type)
+    {
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType(type);
+
+        return intent;
     }
 
     @Nullable
