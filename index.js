@@ -1,4 +1,8 @@
-import { NativeModules } from 'react-native';
+import React, {
+    ActionSheetIOS,
+    Platform,
+    NativeModules
+} from "react-native";
 
 module.exports = {
     share: function () {
