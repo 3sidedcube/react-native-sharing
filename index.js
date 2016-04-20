@@ -1,6 +1,6 @@
 import React, {
-    ActionSheetIOS,
     Platform,
+    ActionSheetIOS,
     NativeModules
 } from "react-native";
 
@@ -22,8 +22,18 @@ module.exports = {
                         'com.apple.UIKit.activity.SaveToCameraRoll',
                         'com.apple.UIKit.activity.PostToFacebook'
                     ]
+                },
+                (error) => console.log(error),
+                (success, method) =>
+                {
+                    var text;
+                    if (success) {
+                        text = `Shared via ${method}`;
+                    } else {
+                        text = 'You didn\'t share';
+                    }
+                    this.setState({text});
                 }
-            );
         }
         else
         {
