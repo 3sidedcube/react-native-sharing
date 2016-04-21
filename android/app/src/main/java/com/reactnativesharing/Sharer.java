@@ -17,9 +17,9 @@ import javax.annotation.Nullable;
 public class Sharer extends ReactContextBaseJavaModule
 {
     private static final String REACT_CLASS_NAME = "Sharer";
-    private static final String KEY_SUBJECT = "share_text";
-    private static final String KEY_TEXT = "share_URL";
-    private static final String KEY_TITLE = "title";
+    private static final String KEY_CHOOSER_TITLE = "chooser_title";
+    private static final String KEY_SUBJECT = "subject";
+    private static final String KEY_MESSAGE = "message";
     private ReactApplicationContext context;
 
     public Sharer(ReactApplicationContext context)
@@ -41,13 +41,13 @@ public class Sharer extends ReactContextBaseJavaModule
     @ReactMethod
     public void share(ReadableMap options, Promise promise)
     {
+        String chooserTitle = options.getString(KEY_CHOOSER_TITLE);
         String subject = options.getString(KEY_SUBJECT);
-        String text = options.getString(KEY_TEXT);
-        String title = options.getString(KEY_TITLE);
+        String message = options.getString(KEY_MESSAGE);
 
-        Intent shareIntent = getShareIntent(subject, text, "text/plain");
+        Intent shareIntent = getShareIntent(subject, message, "text/plain");
 
-        Intent chooserIntent = Intent.createChooser(shareIntent, title);
+        Intent chooserIntent = Intent.createChooser(shareIntent, chooserTitle);
         chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         try
@@ -75,9 +75,9 @@ public class Sharer extends ReactContextBaseJavaModule
     public Map<String, Object> getConstants()
     {
         HashMap<String, Object> constants = new HashMap<String, Object>();
+        constants.put("KEY_CHOOSER_TITLE", KEY_CHOOSER_TITLE);
         constants.put("KEY_SUBJECT", KEY_SUBJECT);
-        constants.put("KEY_TEXT", KEY_TEXT);
-        constants.put("KEY_TITLE", KEY_TITLE);
+        constants.put("KEY_MESSAGE", KEY_MESSAGE);
 
         return constants;
     }
