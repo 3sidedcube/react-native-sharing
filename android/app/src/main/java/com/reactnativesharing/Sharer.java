@@ -28,6 +28,10 @@ public class Sharer extends ReactContextBaseJavaModule
         this.context = context;
     }
 
+    /**
+     * Gets the name that React Native will use to reference this
+     * @return {link String} the name
+     */
     @Override
     public String getName()
     {
@@ -60,6 +64,13 @@ public class Sharer extends ReactContextBaseJavaModule
         }
     }
 
+    /**
+     * Creates an intent to share
+     * @param subject
+     * @param text
+     * @param type
+     * @return {link Intent}
+     */
     private Intent getShareIntent(String subject, String text, String type)
     {
         Intent intent = new Intent(android.content.Intent.ACTION_SEND);
@@ -68,18 +79,6 @@ public class Sharer extends ReactContextBaseJavaModule
         intent.setType(type);
 
         return intent;
-    }
-
-    @Nullable
-    @Override
-    public Map<String, Object> getConstants()
-    {
-        HashMap<String, Object> constants = new HashMap<String, Object>();
-        constants.put("KEY_CHOOSER_TITLE", KEY_CHOOSER_TITLE);
-        constants.put("KEY_SUBJECT", KEY_SUBJECT);
-        constants.put("KEY_MESSAGE", KEY_MESSAGE);
-
-        return constants;
     }
 
 }
