@@ -20,20 +20,20 @@ module.exports = {
      */
     share: function (subject, message, url) {
         return new Promise((resolve, reject) => {
-            if (typeof subject === 'undefined') {
-                reject({
+            if (!subject) {
+                return reject({
                     _error: "You must provide a subject to share!"
                 });
             }
 
-            if (typeof message === 'undefined') {
-                reject({
+            if (!message) {
+                return reject({
                     _error: "You must provide a message to share!"
                 });
             }
 
-            if (typeof url === 'undefined') {
-                reject({
+            if (!url) {
+                return reject({
                     _error: "You must provide a url to share!"
                 });
             }
@@ -47,19 +47,20 @@ module.exports = {
                         url: url
                     },
                     (error) => {
-                        reject({
+                        return reject({
                             _error: error
                         });
                     },
                     (success, activityType) => {
                         if (success && activityType) {
-                            resolve({
+                            return resolve({
                                 application: activityType
                             });
+                        } else {
+                            return reject({
+                                _error: "User did not share"
+                            });
                         }
-                        reject({
-                            _error: "User did not share"
-                        });
                     }
                 );
             } else if (Platform.OS === "android") {
@@ -69,11 +70,11 @@ module.exports = {
                     message: message
                 });
 
-                resolve({
+                return resolve({
                     application: null
                 });
             } else {
-                reject({
+                return reject({
                     _error: "You are trying to use an unsupported platform"
                 });
             }
