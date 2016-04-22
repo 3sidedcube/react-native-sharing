@@ -20,12 +20,10 @@ public class Sharer extends ReactContextBaseJavaModule
     private static final String KEY_CHOOSER_TITLE = "chooser_title";
     private static final String KEY_SUBJECT = "subject";
     private static final String KEY_MESSAGE = "message";
-    private ReactApplicationContext context;
 
     public Sharer(ReactApplicationContext context)
     {
         super(context);
-        this.context = context;
     }
 
     /**
@@ -56,7 +54,7 @@ public class Sharer extends ReactContextBaseJavaModule
 
         try
         {
-            this.context.startActivity(chooserIntent);
+            this.getReactApplicationContext().startActivity(chooserIntent);
         }
         catch (ActivityNotFoundException exception)
         {
