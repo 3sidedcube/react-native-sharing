@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Cross platform sharing for React Native",
   "main": "index.js",
-  "dependencies": {
-    "react": "0.14.8",
-    "react-native": "0.24.0"
+  "peerDependencies": {
+    "react": ">=0.14.8",
+    "react-native": ">=0.24.0"
   }
 }
