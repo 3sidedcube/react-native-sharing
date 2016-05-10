@@ -50,9 +50,6 @@ Both ways of using this library have the same parameters:
 
 ### Wrapping views with ShareLink
 
-ShareLink will automatically
-
-
 1. Import the `ShareLink` view component:
 	
 	```
