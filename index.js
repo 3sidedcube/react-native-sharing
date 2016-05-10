@@ -121,5 +121,5 @@ const ShareLink = React.createClass({
     }
 });
 
-export share;
-export ShareLink;
+module.exports.share = share;
+module.exports.ShareLink = ShareLink;
