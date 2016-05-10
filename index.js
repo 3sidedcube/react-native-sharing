@@ -33,20 +33,23 @@ const share = function (subject, message, url) {
             });
         }
 
-        if (!url) {
-            return reject({
-                _error: "You must provide a url to share!"
-            });
+        let options = {
+            subject: subject,
+            message: message
+        };
+
+        if (url) {
+            options = {
+                ...options,
+                url: url,
+                message: `${message} ${url}`
+            }
         }
 
         if (Platform.OS === "ios") {
             ActionSheetIOS.showShareActionSheetWithOptions
             (
-                {
-                    subject: subject,
-                    message: message,
-                    url: url
-                },
+                options,
                 (error) => {
                     return reject({
                         _error: error
@@ -66,9 +69,8 @@ const share = function (subject, message, url) {
             );
         } else if (Platform.OS === "android") {
             NativeModules.Sharer.share({
-                chooser_title: subject,
-                subject: subject,
-                message: message
+                ...options,
+                chooser_title: subject
             });
 
             return resolve({
@@ -95,7 +97,7 @@ const ShareLink = React.createClass({
     propTypes: {
         subject: React.PropTypes.string.isRequired,
         message: React.PropTypes.string.isRequired,
-        url: React.PropTypes.string.isRequired
+        url: React.PropTypes.string
     },
 
     _share() {
