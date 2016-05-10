@@ -3,6 +3,23 @@
   "version": "0.0.1",
   "description": "Cross platform sharing for React Native",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:3sidedcube/react-native-sharing.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-component",
+    "sharing",
+    "android",
+    "ios"
+  ],
+  "author": "Jamie Cruwys<jamie.cruwys@3sidedcube.com> (https://github.com/JamieCruwys)",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/3sidedcube/react-native-sharing/issues"
+  },
+  "homepage": "https://github.com/3sidedcube/react-native-sharing",
   "peerDependencies": {
     "react": ">=0.14.8",
     "react-native": ">=0.24.0"
