@@ -4,8 +4,8 @@ Cross-platform sharing functionality for React-Native.
 
 This results in a **single interface for sharing** across the supported platforms:
 
-* Android, with sharing functionality is provided via a native module.
-* iOS, with sharing functionality is provided by [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html) (part of react-native).
+* Android, with sharing functionality provided via a native module.
+* iOS, with sharing functionality provided by [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html) (part of react-native).
 
 ## Why?
 
