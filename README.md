@@ -2,6 +2,18 @@
 
 Cross-platform sharing functionality for React-Native.
 
+This results in a **single interface for sharing** across the supported platforms:
+
+* Android, with sharing functionality is provided via a native module.
+* iOS, with sharing functionality is provided by [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html) (part of react-native).
+
+## Why?
+
+* There is **no official support** for **cross platform sharing**
+* There is **no official support** for **Android sharing**
+* iOS has official support in the form of [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html)
+* Other GitHub librares make you conform to different interfaces for different platforms, or reinvent functionality already given to you by [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html)
+
 ## Ways to share
 
 It provides two different ways to trigger the sharing functionality:
@@ -24,13 +36,13 @@ Both ways of using this library have the same parameters:
 
 ### Calling the share function directly
 
-1. Import the share function:
+1. Import the `share` function:
 
 	```
 	import { share } from 'react-native-sharing';
 	```
 
-2. Then call the share function and pass in the parameters:
+2. Then call the `share` function and pass in the parameters:
 
 	```
 	share(subject, message, url)
@@ -41,13 +53,13 @@ Both ways of using this library have the same parameters:
 ShareLink will automatically
 
 
-1. Import the ShareLink view component:
+1. Import the `ShareLink` view component:
 	
 	```
 	import { ShareLink } from 'react-native-sharing';
 	```
 
-2. Wrap the views you want to trigger sharing in a ShareLink and add the parameters:
+2. Wrap the views you want to trigger sharing in a `ShareLink` and add the parameters:
 
 	```
 	<ShareLink subject="Do you know 3SC?" message="Check out 3SC" url="https://3sidedcube.com/">
@@ -55,5 +67,52 @@ ShareLink will automatically
 	</ShareLink>
 	```
 
-## Why?
+## Setup
 
+### Android
+
+1. Ensure your launch activity extends from `ReactActivity` like so:
+
+	```
+	public class MainActivity extends ReactActivity {
+	```
+
+2. Import `SharerPackage` in your launch activity.
+
+	```
+	import com.reactnativesharing.SharerPackage;
+	```
+	
+3. Update/implement `getPackages()` in your launch activity so that `SharerPackage` is returned in your list of packages:
+
+	```
+	@Override
+	protected List<ReactPackage> getPackages() {
+	    return Arrays.<ReactPackage>asList(
+	        new MainReactPackage(),
+	        new SharerPackage()
+	    );
+	}
+	```
+
+4. Include `react-native-sharing` in your `android/settings.gradle` file:
+
+	```
+	include ':react-native-sharing'
+	```
+	
+5. Reference the `react-native-sharing` project in your `android/settings.gradle` file:
+
+	```
+	project(':react-native-sharing').projectDir = new File(rootProject.projectDir, '../	node_modules/react-native-sharing/android/app')
+	```
+	
+6. Tell gradle to compile `react-native-sharing` in `android/app/build.gradle`
+
+	```
+	compile project(":react-native-sharing")
+	```
+
+### iOS
+
+1. No setup needed, it just works (because we're using [ActionSheetIOS](https://facebook.github.io/react-native/docs/actionsheetios.html)).
