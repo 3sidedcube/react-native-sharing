@@ -26,7 +26,7 @@ It provides two different ways to trigger sharing functionality:
 
 Both ways of using this library have the same parameters:
 
-* **Subject (required)** - Shown above the sharing options and use in emails as the subject.
+* **Subject (required)** - Shown above the sharing options and used in emails as the subject.
 
 * **Message (required)** - The message that will be shared.
 
@@ -80,7 +80,7 @@ Both ways of using this library have the same parameters:
 	import com.reactnativesharing.SharerPackage;
 	```
 	
-3. Update/implement `getPackages()` in your launch activity so that `SharerPackage` is returned in your list of packages:
+3. Implement `getPackages()` in your launch activity so that `SharerPackage` is returned in your list of packages:
 
 	```
 	@Override
