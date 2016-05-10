@@ -16,7 +16,7 @@ This results in a **single interface for sharing** across the supported platform
 
 ## Ways to share
 
-It provides two different ways to trigger the sharing functionality:
+It provides two different ways to trigger sharing functionality:
 
 1. Calling the `share` function directly
 
