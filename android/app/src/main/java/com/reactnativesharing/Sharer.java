@@ -17,17 +17,19 @@ import javax.annotation.Nullable;
 public class Sharer extends ReactContextBaseJavaModule
 {
     private static final String REACT_CLASS_NAME = "Sharer";
-    private static final String KEY_SUBJECT = "share_text";
-    private static final String KEY_TEXT = "share_URL";
-    private static final String KEY_TITLE = "title";
-    private ReactApplicationContext context;
+    private static final String KEY_CHOOSER_TITLE = "chooser_title";
+    private static final String KEY_SUBJECT = "subject";
+    private static final String KEY_MESSAGE = "message";
 
     public Sharer(ReactApplicationContext context)
     {
         super(context);
-        this.context = context;
     }
 
+    /**
+     * Gets the name that React Native will use to reference this
+     * @return {link String} the name
+     */
     @Override
     public String getName()
     {
@@ -41,18 +43,18 @@ public class Sharer extends ReactContextBaseJavaModule
     @ReactMethod
     public void share(ReadableMap options, Promise promise)
     {
+        String chooserTitle = options.getString(KEY_CHOOSER_TITLE);
         String subject = options.getString(KEY_SUBJECT);
-        String text = options.getString(KEY_TEXT);
-        String title = options.getString(KEY_TITLE);
+        String message = options.getString(KEY_MESSAGE);
 
-        Intent shareIntent = new ShareIntent(subject, text, "text/plain");
+        Intent shareIntent = getShareIntent(subject, message, "text/plain");
 
-        Intent chooserIntent = Intent.createChooser(shareIntent, title);
+        Intent chooserIntent = Intent.createChooser(shareIntent, chooserTitle);
         chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         try
         {
-            this.context.startActivity(chooserIntent);
+            this.getReactApplicationContext().startActivity(chooserIntent);
         }
         catch (ActivityNotFoundException exception)
         {
@@ -60,16 +62,21 @@ public class Sharer extends ReactContextBaseJavaModule
         }
     }
 
-    @Nullable
-    @Override
-    public Map<String, Object> getConstants()
+    /**
+     * Creates an intent to share
+     * @param subject
+     * @param text
+     * @param type
+     * @return {link Intent}
+     */
+    private Intent getShareIntent(String subject, String text, String type)
     {
-        HashMap<String, Object> constants = new HashMap<String, Object>();
-        constants.put("KEY_SUBJECT", KEY_SUBJECT);
-        constants.put("KEY_TEXT", KEY_TEXT);
-        constants.put("KEY_TITLE", KEY_TITLE);
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType(type);
 
-        return constants;
+        return intent;
     }
 
 }
