@@ -1,10 +1,13 @@
-import React, {
+import ReactNative, {
     Platform,
     ActionSheetIOS,
     NativeModules,
     TouchableHighlight,
     View
 } from "react-native";
+
+import React from "react";
+
 
 /**
  * Share some content with other apps.
